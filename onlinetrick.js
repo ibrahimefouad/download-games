@@ -1,17 +1,11 @@
-
-
-
 function pageNavi(o){
 	var m=location.href,
 		l=m.indexOf("/search/label/")!=-1,
 		a=l?m.substr(m.indexOf("/search/label/")+14,m.length):"";
-		
 	a=a.indexOf("?")!=-1?a.substr(0,a.indexOf("?")):a;
-	
 	var g=l?"/search/label/"+a+"?updated-max=":"/search?updated-max=",
 		k=o.feed.entry.length,
 		e=Math.ceil(k/pageNaviConf.perPage);
-	
 	if(e<=1){
 		return
 	}
@@ -23,9 +17,7 @@ function pageNavi(o){
 		var c=(d-1)*pageNaviConf.perPage-1,
 			b=o.feed.entry[c].published.$t,
 			f=b.substring(0,19)+b.substring(23,29);
-			
 		f=encodeURIComponent(f);
-		
 		if(m.indexOf(f)!=-1){
 			n=d
 		}
@@ -54,7 +46,6 @@ pageNavi.show=function(f,e,a){
 	if(c<=0){
 		c=1
 	}
-	
 	var b='<span class="pages">Page '+e+' of '+a+"</span> ";
 	
 	if(c>1){
@@ -76,8 +67,6 @@ pageNavi.show=function(f,e,a){
 	if(endPage<a){
 		b+='<a href="'+f[a]+'">'+pageNaviConf.lastText+"</a>"
 	}
-	
 	document.write(b)
 };
-	
 (function(){var b=location.href;if(b.indexOf("?q=")!=-1||b.indexOf(".html")!=-1){return}var d=b.indexOf("/search/label/")+14;if(d!=13){var c=b.indexOf("?"),a=(c==-1)?b.substring(d):b.substring(d,c);document.write('<script type="text/javascript" src="/feeds/posts/summary/-/'+a+'?alt=json-in-script&callback=pageNavi&max-results=99999"><\/script>')}else{document.write('<script type="text/javascript" src="/feeds/posts/summary?alt=json-in-script&callback=pageNavi&max-results=99999"><\/script>')}})();
